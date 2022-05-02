@@ -49,12 +49,12 @@ def myReg3(source, target):
     simg1 = sitk.Cast(sitk.RescaleIntensity(fixed), sitk.sitkUInt8)
     simg2 = sitk.Cast(sitk.RescaleIntensity(out), sitk.sitkUInt8)
     cimg = sitk.Compose(simg1, simg2, simg1 // 2. + simg2 // 2.)
-    return cimg
+    return cimg, R.GetMetricValue()
 
 
 data1A = "C:/Users/gabri/Desktop/Data/manifest-1608266677008/MIDRC-RICORD-1A/MIDRC-RICORD-1A-419639-000082/08-02-2002-NA-CT CHEST WITHOUT CONTRAST-04614/2.000000-ROUTINE CHEST NON-CON-97100"
-data1B = "C:/Users/gabri/Desktop/Data/manifest-1608266677008/MIDRC-RICORD-1A/MIDRC-RICORD-1A-419639-000800/05-11-2005-NA-CT CHEST WITHOUT CONTRAST-61055/2.000000-ROUTINE CHEST NON-CON-70218"
-
+data1B = "C:/Users/gabri/Desktop/Data/manifest-1612365584013/MIDRC-RICORD-1B/MIDRC-RICORD-1B-419639-000350/02-09-2006-NA-CT CHEST WITHOUT CONTRAST-03488/2.000000-ROUTINE CHEST NON-CON-95169"
+'''C:/Users/gabri/Desktop/Data/manifest-1612365584013/MIDRC-RICORD-1B/MIDRC-RICORD-1B-419639-000350/02-09-2006-NA-CT CHEST WITHOUT CONTRAST-03488/2.000000-ROUTINE CHEST NON-CON-95169'''
 
 
 reader = sitk.ImageSeriesReader()
@@ -69,10 +69,10 @@ image1B = reader2.Execute();
 
 
 
-regIMG = myReg3(image1A, image1B)
+regIMG, mVal = myReg3(image1A, image1B)
 
-
-
+print("\nMetric value: ", mVal)
+'''
 image_viewer1A = sitk.ImageViewer()
 image_viewer1A.SetApplication('C:/Program Files/ITK-SNAP 3.8/bin/ITK-SNAP.exe')
 image_viewer1A.Execute(image1A)
@@ -86,3 +86,4 @@ image_viewer1B.Execute(image1B)
 image_viewer = sitk.ImageViewer()
 image_viewer.SetApplication('C:/Program Files/ITK-SNAP 3.8/bin/ITK-SNAP.exe')
 image_viewer.Execute(regIMG)
+'''
