@@ -83,11 +83,11 @@ feature_img2 = sitk.GradientMagnitude(image1B)
 
 '''Watershed segmentation'''
 '''Change the level value'''
-ws_img1 = sitk.MorphologicalWatershed(feature_img, level=50, markWatershedLine=True, fullyConnected=False)
-ws_img2 = sitk.MorphologicalWatershed(feature_img2, level=50, markWatershedLine=True, fullyConnected=False)
+ws_img1 = sitk.MorphologicalWatershed(feature_img, level=60, markWatershedLine=True, fullyConnected=False)
+ws_img2 = sitk.MorphologicalWatershed(feature_img2, level=60, markWatershedLine=True, fullyConnected=False)
 
 '''Registration function returns an image and the metric value'''
-regIMG, mVal = myReg3(image1A, ws_img2)
+regIMG, mVal = myReg3(ws_img1, ws_img2)
 
 
 image_viewer1A = sitk.ImageViewer()
